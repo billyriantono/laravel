@@ -42,9 +42,6 @@ class TmdbServiceProviderLaravel5 extends ServiceProvider
      */
     public function config()
     {
-        if (file_exists(config_path('tmdb.php'))) {
-            return config_path('tmdb.php');
-        }
         return $this->app['config']->get('tmdb');
     }
 
@@ -66,6 +63,9 @@ class TmdbServiceProviderLaravel5 extends ServiceProvider
      */
     private function defaultConfig()
     {
+        if (file_exists(config_path('tmdb.php'))) {
+            return config_path('tmdb.php');
+        }
         return __DIR__ . '/config/tmdb.php';
     }
 }
