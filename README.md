@@ -1,7 +1,7 @@
 ## Description
 A Laraval Package for use together with the [php-tmdb/api](https://github.com/php-tmdb/api) TMDB Wrapper.
 This package comes with a service provider that configures the `Tmdb\Client` and registers it to the IoC container.
-Both Laravel 5 and 4 are supported.
+Both Laravel 5  & 4  also Lumen are supported.
 
 
 ## Installation
@@ -39,6 +39,10 @@ php artisan config:publish php-tmdb/laravel
 #### Laravel 5:
 ```
 php artisan vendor:publish --provider="Tmdb\Laravel\TmdbServiceProviderLaravel5"
+```
+### Lumen
+```
+You need create manually the tmdb.php file in folder config
 ```
 
 Next you can modify the generated configuration file `tmdb.php` accordingly.

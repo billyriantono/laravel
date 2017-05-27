@@ -99,9 +99,19 @@ class TmdbServiceProvider extends ServiceProvider
         $app = $this->app;
 
         // Pick the correct service provider for the current verison of Laravel
-        $this->provider = (version_compare($app::VERSION, '5.0', '<'))
-            ? new TmdbServiceProviderLaravel4($app)
-            : new TmdbServiceProviderLaravel5($app);
+        $laravel_version = substr($app->version(), 0, strpos($app->version(), '.'));
+
+        if (strpos(strtolower($laravel_version), 'lumen') !== false) {
+            $this->isLumen = true;
+            $laravel_version = str_replace('Lumen (', '', $laravel_version);
+        }
+
+        if ($laravel_version == 5)
+        {
+            $this->provider = new TmdbServiceProviderLaravel5($app);
+        } else {
+            $this->provider = new TmdbServiceProviderLaravel4($app);
+        }
     }
 
     /**
