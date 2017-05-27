@@ -8,7 +8,8 @@ namespace Tmdb\Laravel;
 
 use Illuminate\Support\ServiceProvider;
 
-class TmdbServiceProviderLaravel5 extends ServiceProvider {
+class TmdbServiceProviderLaravel5 extends ServiceProvider
+{
 
     /**
      * Bootstrap the application events.
@@ -41,6 +42,9 @@ class TmdbServiceProviderLaravel5 extends ServiceProvider {
      */
     public function config()
     {
+        if (file_exists(config_path('tmdb.php'))) {
+            return config_path('tmdb.php');
+        }
         return $this->app['config']->get('tmdb');
     }
 
